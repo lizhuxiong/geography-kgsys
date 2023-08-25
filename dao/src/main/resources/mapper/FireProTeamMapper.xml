@@ -1,0 +1,27 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.geo.dao.mapper.FireProTeamMapper">
+
+    <select id="selectAll" resultType="FireProTeamPO">
+        select * from fire_protection_team
+    </select>
+
+    <select id="selectByTeamId" parameterType="String" resultType="FireProTeamPO">
+        select * from fire_protection_team where FireProtectionTeamID=#{id}
+    </select>
+
+    <update id="updateByTeamId" parameterType="FireProTeamPO" >
+        update fire_protection_team
+        set FireProtectionTeamMember=#{fireProtectionTeamMember},
+            FireProtectionTeamContact=#{fireProtectionTeamContact}
+        where FireProtectionTeamID = #{fireProtectionTeamID}
+    </update>
+
+    <delete id="deleteByTeamId" parameterType="String">
+        delete from fire_protection_team where FireProtectionTeamID = #{fireProtectionTeamID}
+    </delete>
+
+    <insert id="insertTeam" parameterType="FireProTeamPO">
+        insert into fire_protection_team
+        values (#{fireProtectionTeamID},#{fireProtectionTeamMember},#{fireProtectionTeamContact})
+    </insert>
+</mapper>
